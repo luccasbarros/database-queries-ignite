@@ -1,8 +1,8 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository } from "typeorm";
 
-import { IFindUserWithGamesDTO, IFindUserByFullNameDTO } from '../../dtos';
-import { User } from '../../entities/User';
-import { IUsersRepository } from '../IUsersRepository';
+import { IFindUserWithGamesDTO, IFindUserByFullNameDTO } from "../../dtos";
+import { User } from "../../entities/User";
+import { IUsersRepository } from "../IUsersRepository";
 
 export class UsersRepository implements IUsersRepository {
   private repository: Repository<User>;
@@ -14,7 +14,8 @@ export class UsersRepository implements IUsersRepository {
   async findUserWithGamesById({
     user_id,
   }: IFindUserWithGamesDTO): Promise<User> {
-    // Complete usando ORM
+    const user = this.repository.findByIds(user_id);
+    return user;
   }
 
   async findAllUsersOrderedByFirstName(): Promise<User[]> {
